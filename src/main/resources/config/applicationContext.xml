@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <!--引入properties配置文件-->
+    <context:property-placeholder location="classpath:config/jdbc.properties" />
+    <!-- 注解扫描 @Component,@Repository,@Service,@Controller-->
+    <context:component-scan base-package="com.lj.spring"/>
+
+
+    <!-- 开启springMVC的注解驱动，使得url可以映射到对应的controller -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <!--<mvc:annotation-driven /> 这个默认就给容器注入了下面的2个bean，所以就不需要再次重复注入了-->
+    <!--下面第一个行使得自动映射到对应的controller类上，再下一行是映射到方法上，缺一不可。-->
+    <!--配置处理器映射器-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>-->
+    <!--配置处理器适配器-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
+
+    <!--视图解释器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!--加载mybatis的配置文件-->
+    <import resource="classpath:config/spring-mybatis.xml" />
+
+</beans>
