@@ -1,7 +1,11 @@
 package com.lj.spring.bean;
 
+
 /**
- * Created by manajay on 25/07/2017.
+ * @author 段连洁 [manajay.dlj@gmail.com]
+ * @class User
+ * @description
+ * @date 02/08/2017 4:42 PM
  */
 public class User {
 

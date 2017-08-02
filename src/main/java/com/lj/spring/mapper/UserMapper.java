@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by lj on 25/07/2017.
+ * @author 段连洁 [manajay.dlj@gmail.com]
+ * @class UserManager
+ * @description
+ * @date 02/08/2017 4:42 PM
  */
 public interface UserMapper {
 

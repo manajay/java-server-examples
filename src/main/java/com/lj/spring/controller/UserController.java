@@ -25,8 +25,14 @@ public class UserController {
 
     static Logger log = Logger.getLogger(UserController.class.getName());
 
-
     @RequestMapping("/gotoRegister")
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:41 PM
+     * @Method gotoRegister
+     * @Params []
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     public ModelAndView gotoRegister () {
         ModelAndView userView = new ModelAndView();
         userView.setViewName("userRegisterView");
@@ -34,6 +40,13 @@ public class UserController {
     }
 
     @RequestMapping("/goToWelcome")
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:41 PM
+     * @Method goToWelcome
+     * @Params []
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     public ModelAndView  goToWelcome(){
         ModelAndView userView = new ModelAndView();
         userView.setViewName("index");
@@ -42,6 +55,13 @@ public class UserController {
 
 
     @RequestMapping("/userRegister")
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:41 PM
+     * @Method userRegister
+     * @Params [user]
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     public ModelAndView userRegister (User user) {
         userService.addUser(user);
 
@@ -49,15 +69,24 @@ public class UserController {
     }
 
     @RequestMapping("/userLogin")
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:40 PM
+     * @Method userLogin
+     * @Params [request]
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     public ModelAndView userLogin(HttpServletRequest request) {
-//      获取参数
+        //      获取参数
         String name = request.getParameter("name");
         String password = request.getParameter("password");
-//      创建map
+
+        //      创建map
         Map<String,String> map = new HashMap<String, String>();
         map.put("name",name);
         map.put("password",password);
-//      根据map查询
+
+        //      根据map查询
         User user = userService.getUserByName(map);
         log.debug(user);
 
@@ -71,6 +100,14 @@ public class UserController {
 
 
 
+
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:39 PM
+     * @Method userDetail
+     * @Params [request, model]
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     @RequestMapping("/userDetail")
     public ModelAndView userDetail (@RequestParam(value = "id", required = true,defaultValue = "1")
                                                 HttpServletRequest request, Model model) {
@@ -83,7 +120,15 @@ public class UserController {
         return userView;
     }
 
+
     @RequestMapping("/userEdit")
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:40 PM
+     * @Method userEdit
+     * @Params [id]
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     public ModelAndView userEdit(int id){
         User user =  userService.getUser(id);
 
@@ -94,6 +139,13 @@ public class UserController {
     }
 
     @RequestMapping("/updateUser")
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:40 PM
+     * @Method userUpdate
+     * @Params [user]
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     public ModelAndView userUpdate(User user){
         userService.updateUser(user);
 
@@ -101,6 +153,13 @@ public class UserController {
     }
 
     @RequestMapping("/userList")
+    /**
+     * @Author 段连洁 [ manajay.dlj@gmail.com ]
+     * @Date   02/08/2017 4:40 PM
+     * @Method showUserList
+     * @Params []
+     * @Return org.springframework.web.servlet.ModelAndView
+     */
     public ModelAndView showUserList(){
 
         List<User> list = userService.getAllUsers();

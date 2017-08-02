@@ -1,3 +1,10 @@
+/**
+ * @author 段连洁 [manajay.dlj@gmail.com]
+ * @class UserServiceImpl
+ * @description
+ * @date 02/08/2017 4:42 PM
+ */
+
 package com.lj.spring.service;
 
 import com.lj.spring.bean.User;
