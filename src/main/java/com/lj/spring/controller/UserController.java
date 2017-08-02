@@ -2,6 +2,7 @@ package com.lj.spring.controller;
 
 import com.lj.spring.bean.User;
 import com.lj.spring.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 @Controller
 @RequestMapping("/api")
@@ -19,11 +23,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    static Logger log = Logger.getLogger(UserController.class.getName());
+
 
     @RequestMapping("/gotoRegister")
     public ModelAndView gotoRegister () {
         ModelAndView userView = new ModelAndView();
         userView.setViewName("userRegisterView");
+        return userView;
+    }
+
+    @RequestMapping("/goToWelcome")
+    public ModelAndView  goToWelcome(){
+        ModelAndView userView = new ModelAndView();
+        userView.setViewName("index");
         return userView;
     }
 
@@ -36,16 +49,27 @@ public class UserController {
     }
 
     @RequestMapping("/userLogin")
+    public ModelAndView userLogin(HttpServletRequest request) {
+//      获取参数
+        String name = request.getParameter("name");
+        String password = request.getParameter("password");
+//      创建map
+        Map<String,String> map = new HashMap<String, String>();
+        map.put("name",name);
+        map.put("password",password);
+//      根据map查询
+        User user = userService.getUserByName(map);
+        log.debug(user);
 
-    public ModelAndView userLogin(String name,String password) {
-//        获取id
-        User user = userService.getUserByUsername(name,password);
-//        展示详情
-        ModelAndView userView = new ModelAndView();
-        userView.addObject("user",user);
-        userView.setViewName("userView");
-        return userView;
+        if (user == null){
+            log.debug("没有该用户");
+            return goToWelcome();
+        }
+
+        return showUserList();
     }
+
+
 
     @RequestMapping("/userDetail")
     public ModelAndView userDetail (@RequestParam(value = "id", required = true,defaultValue = "1")

@@ -4,24 +4,49 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lj.spring.mapper.UserMapper">
 
-    <insert id="addUser" parameterType="User" >
+    <!--<resultMap id="UserResultMap" type="com.lj.spring.bean.User">-->
+        <!--<id property="id" column="id" jdbcType="INTEGER"></id>-->
+        <!--<result column="name" property="name" jdbcType="VARCHAR"></result>-->
+        <!--<result column="age" property="age" jdbcType="INTEGER"></result>-->
+        <!--<result column="password" property="password" jdbcType="VARCHAR"></result>-->
+        <!--<result column="detail" property="detail" jdbcType="VARCHAR"></result>-->
+    <!--</resultMap>-->
+
+    <sql id="User_Colum_List">
+        id,name,age,password,detail
+    </sql>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="User" >
         INSERT INTO users (name,age,password,detail) VALUES (#{name},#{age},#{password},#{detail})
     </insert>
 
     <select id="getUser" parameterType="int" resultType="User">
-        SELECT * FROM USERS WHERE id=#{id}
+        SELECT
+        <include refid="User_Colum_List"/>
+         FROM USERS WHERE id=#{id}
     </select>
 
-    <select id="getUserByUsername"  resultType="User">
-        SELECT * FROM USERS WHERE name=#{name},password=#{password}
+    <select id="getUserByName"  parameterType="java.util.Map" resultType="User">
+        SELECT
+        <include refid="User_Colum_List"/>
+        FROM USERS WHERE name=#{name} AND password=#{password}
     </select>
 
     <select id="getAllUsers" resultType="User">
-        SELECT * FROM users
+        SELECT
+        <include refid="User_Colum_List"/>
+        FROM USERS
     </select>
 
     <update id="updateUser" parameterType="User">
-        UPDATE users set name=#{name},age=#{age},password=#{password},detail=#{detail} WHERE id=#{id}
+        UPDATE users
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="age != null">age=#{age},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="detail != null">detail=#{detail}</if>
+        </set>
+        WHERE id=#{id}
     </update>
 
     <delete id="deleteUser" parameterType="int" >

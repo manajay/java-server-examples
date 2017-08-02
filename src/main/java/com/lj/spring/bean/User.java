@@ -11,12 +11,12 @@ public class User {
     private String password;
     private String detail;
 
+    public User() {
+    }
+
     public User(int id, String name, int age, String password, String detail) {
+        this(name,age,password,detail);
         this.id = id;
-        this.name = name;
-        this.age = age;
-        this.password = password;
-        this.detail = detail;
     }
 
     public User(String name, int age, String password, String detail) {

@@ -27,7 +27,7 @@
                 密码
             </td>
             <td>
-                <input type="text" name="password" size="10"></input>
+                <input type="text" name="password"  size="10"></input>
             </td>
         </tr>
 

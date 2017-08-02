@@ -16,21 +16,21 @@
     <table width="400" border="1">
         <tr>
             <td>用户名称</td>
-            <td> <input type="text" name="name" value=""/> </td>
+            <td> <input type="text" name="name" /> </td>
         </tr>
         <tr>
             <td>用户年龄</td>
-            <td> <input type="number" name="age" value=""/> </td>
-        </tr>
-
-        <tr>
-            <td>个人介绍</td>
-            <td> <input type="text" name="detail" value="" placeholder="简要介绍一下自己吧"/> </td>
+            <td> <input type="number" name="age" /> </td>
         </tr>
 
         <tr>
             <td>登录密码</td>
-            <td> <input type="password" name="password" value="" placeholder="密码位数8~16位,包含大小写"/> </td>
+            <td> <input type="password" name="password"  placeholder="密码位数8~16位,包含大小写"/> </td>
+        </tr>
+
+        <tr>
+            <td>个人介绍</td>
+            <td> <input type="text" name="detail"  placeholder="简要介绍一下自己吧"/> </td>
         </tr>
 
         <tr>
