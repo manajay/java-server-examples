@@ -5,12 +5,13 @@ import com.lj.spring.bean.User;
 import java.util.List;
 import java.util.Map;
 
+//DAO 是 DataAccessObject 的缩写，简单的说，DAO是工作在持久层的，主要负责从底层存储中写入/读取数据，
 /**
  * @author 段连洁 [manajay.dlj@gmail.com]
  * @class  用户管理者
  * @since  02/08/2017 4:42 PM
  */
-public interface UserMapper {
+public interface UserMapper  {
 
     /**
      * 根据 索引 获取用户数据
