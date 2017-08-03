@@ -23,13 +23,19 @@
 <tr>
     <td>用户名</td>
     <td>年龄</td>
+    <td>介绍</td>
+    <td>操作</td>
 </tr>
 
 <c:forEach items="${list}" var="item">
     <tr>
         <td>${item.name}</td>
         <td>${item.age}</td>
-        <td><a href="${pageContext.request.contextPath}/api/userEdit?id=${item.id}">修改</a></td>
+        <td>${item.detail}</td>
+        <td>
+            <a href="${pageContext.request.contextPath}/api/userEdit?id=${item.id}">修改</a>
+            <a href="${pageContext.request.contextPath}/api/userDelete?id=${item.id}">删除</a>
+        </td>
     </tr>
 </c:forEach>
 

@@ -11,28 +11,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//请求–>DispatcherServlet–>HandlerMapping–>Controller组件（变化）–>ViewResolver–>JSP组件（变化）
 
 @Controller
 @RequestMapping("/api")
+
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    static Logger log = Logger.getLogger(UserController.class.getName());
+    static private Logger log = Logger.getLogger(UserController.class.getName());
 
     @RequestMapping("/gotoRegister")
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:41 PM
-     * @Method gotoRegister
-     * @Params []
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
+
     public ModelAndView gotoRegister () {
         ModelAndView userView = new ModelAndView();
         userView.setViewName("userRegisterView");
@@ -40,13 +37,7 @@ public class UserController {
     }
 
     @RequestMapping("/goToWelcome")
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:41 PM
-     * @Method goToWelcome
-     * @Params []
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
+
     public ModelAndView  goToWelcome(){
         ModelAndView userView = new ModelAndView();
         userView.setViewName("index");
@@ -55,13 +46,7 @@ public class UserController {
 
 
     @RequestMapping("/userRegister")
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:41 PM
-     * @Method userRegister
-     * @Params [user]
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
+
     public ModelAndView userRegister (User user) {
         userService.addUser(user);
 
@@ -69,13 +54,6 @@ public class UserController {
     }
 
     @RequestMapping("/userLogin")
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:40 PM
-     * @Method userLogin
-     * @Params [request]
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
     public ModelAndView userLogin(HttpServletRequest request) {
         //      获取参数
         String name = request.getParameter("name");
@@ -101,16 +79,10 @@ public class UserController {
 
 
 
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:39 PM
-     * @Method userDetail
-     * @Params [request, model]
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
+
     @RequestMapping("/userDetail")
-    public ModelAndView userDetail (@RequestParam(value = "id", required = true,defaultValue = "1")
-                                                HttpServletRequest request, Model model) {
+    public ModelAndView userDetail (@RequestParam(value = "id",defaultValue = "1")
+                                                HttpServletRequest request) {
         String id = request.getParameter("id");
         User user =  userService.getUser(Integer.parseInt(id));
 
@@ -122,13 +94,7 @@ public class UserController {
 
 
     @RequestMapping("/userEdit")
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:40 PM
-     * @Method userEdit
-     * @Params [id]
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
+
     public ModelAndView userEdit(int id){
         User user =  userService.getUser(id);
 
@@ -139,27 +105,46 @@ public class UserController {
     }
 
     @RequestMapping("/updateUser")
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:40 PM
-     * @Method userUpdate
-     * @Params [user]
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
-    public ModelAndView userUpdate(User user){
-        userService.updateUser(user);
 
+    public ModelAndView userUpdate(HttpServletRequest req){
+
+        try {
+            req.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        String id  = req.getParameter("id");
+        String name = req.getParameter("name");
+        String detail = req.getParameter("detail");
+        String age = req.getParameter("age");
+
+        User user = new User();
+        user.setId(Integer.parseInt(id));
+        user.setAge(Integer.parseInt(age));
+        user.setName(name);
+        user.setDetail(detail);
+
+        userService.updateUser(user);
+        return showUserList();
+    }
+
+    @RequestMapping("/updateUser0")
+
+    public ModelAndView userUpdate0(User user){
+        log.debug(user);
+
+        userService.updateUser(user);
+        return showUserList();
+    }
+
+    @RequestMapping("/userDelete")
+    public ModelAndView userDelete(int id) {
+        userService.deleteUser(id);
         return showUserList();
     }
 
     @RequestMapping("/userList")
-    /**
-     * @Author 段连洁 [ manajay.dlj@gmail.com ]
-     * @Date   02/08/2017 4:40 PM
-     * @Method showUserList
-     * @Params []
-     * @Return org.springframework.web.servlet.ModelAndView
-     */
     public ModelAndView showUserList(){
 
         List<User> list = userService.getAllUsers();
