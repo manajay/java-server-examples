@@ -3,16 +3,28 @@ package com.lj.spring.bean;
 
 /**
  * @author 段连洁 [manajay.dlj@gmail.com]
- * @class User
- * @description
- * @date 02/08/2017 4:42 PM
+ * @since  02/08/2017 4:42 PM
  */
 public class User {
-
+    /**
+     * 用户索引
+     */
     private int id;
+    /**
+     * 用户名称
+     */
     private String name;
+    /**
+     * 用户年龄
+     */
     private int age;
+    /**
+     * 用户密码
+     */
     private String password;
+    /**
+     * 用户简洁
+     */
     private String detail;
 
     public User() {

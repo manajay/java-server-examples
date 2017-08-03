@@ -23,15 +23,15 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     public User getUser(int id){
-        return userMapper.getUser(id);
+        return userMapper.getUserById(id);
     }
 
-    public User getUserByName(Map<String,String> params){
-        User user = userMapper.getUserByName(params);
+    public User getUserByMap(Map<String,String> params){
+        User user = userMapper.getUserByMap(params);
         return user;
     }
 
-    public void addUser (User user) {
+    public void addUser(User user) {
         userMapper.addUser(user);
     }
 

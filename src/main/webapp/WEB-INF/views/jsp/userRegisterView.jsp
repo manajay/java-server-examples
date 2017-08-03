@@ -5,18 +5,22 @@
   Time: 3:04 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
+<%@page pageEncoding="UTF-8" %>
+<%request.setCharacterEncoding("UTF-8");%>
+
 <html>
 <head>
     <title>用户注册</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 
-<form id="registerForm" action="${pageContext.request.contextPath}/api/userRegister" method="post">
+<form id="registerForm" action="${pageContext.request.contextPath}/user/register" method="post">
     <table width="400" border="1">
         <tr>
             <td>用户名称</td>
-            <td> <input type="text" name="name" /> </td>
+            <td> <input  name="name" /> </td>
         </tr>
         <tr>
             <td>用户年龄</td>
@@ -30,7 +34,7 @@
 
         <tr>
             <td>个人介绍</td>
-            <td> <input type="text" name="detail"  placeholder="简要介绍一下自己吧"/> </td>
+            <td> <input name="detail"  placeholder="简要介绍一下自己吧"/> </td>
         </tr>
 
         <tr>

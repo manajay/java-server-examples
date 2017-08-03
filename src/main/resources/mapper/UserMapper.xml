@@ -20,13 +20,13 @@
         INSERT INTO users (name,age,password,detail) VALUES (#{name},#{age},#{password},#{detail})
     </insert>
 
-    <select id="getUser" parameterType="int" resultType="User">
+    <select id="getUserById" parameterType="int" resultType="User">
         SELECT
         <include refid="User_Colum_List"/>
          FROM USERS WHERE id=#{id}
     </select>
 
-    <select id="getUserByName"  parameterType="java.util.Map" resultType="User">
+    <select id="getUserByMap"  parameterType="java.util.Map" resultType="User">
         SELECT
         <include refid="User_Colum_List"/>
         FROM USERS WHERE name=#{name} AND password=#{password}

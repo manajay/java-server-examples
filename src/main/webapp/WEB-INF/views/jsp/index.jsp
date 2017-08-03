@@ -1,5 +1,5 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 
 <html>
 
@@ -7,7 +7,7 @@
 
 <body>
 
-<form name="login-form" action="${pageContext.request.contextPath}/api/userLogin" method="post">
+<form name="login-form" action="${pageContext.request.contextPath}/user/login" method="post">
     <table width="400" border="1">
 
         <tr>
@@ -18,7 +18,7 @@
                 用户名
             </td>
             <td>
-                <input type="text" name="name" size="10"></input>
+                <input  name="name" size="10"/>
             </td>
         </tr>
 
@@ -27,14 +27,14 @@
                 密码
             </td>
             <td>
-                <input type="text" name="password"  size="10"></input>
+                <input  name="password"  size="10"/>
             </td>
         </tr>
 
         <tr>
             <td colspan="2">
                 <input type="submit" name="submit" value="登录"/>
-                <a href="${pageContext.request.contextPath}/api/gotoRegister">注册</a>
+                <a href="${pageContext.request.contextPath}/user/gotoRegister">注册</a>
             </td>
         </tr>
 

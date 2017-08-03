@@ -5,7 +5,6 @@ import com.lj.spring.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,8 +18,7 @@ import java.util.Map;
 //请求–>DispatcherServlet–>HandlerMapping–>Controller组件（变化）–>ViewResolver–>JSP组件（变化）
 
 @Controller
-@RequestMapping("/api")
-
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -30,6 +28,11 @@ public class UserController {
 
     @RequestMapping("/gotoRegister")
 
+    /**
+     *
+     * @author 段连洁 [ manajay.dlj@gmail.com ]
+     * @since 03/08/2017 11:42 AM
+     */
     public ModelAndView gotoRegister () {
         ModelAndView userView = new ModelAndView();
         userView.setViewName("userRegisterView");
@@ -37,7 +40,6 @@ public class UserController {
     }
 
     @RequestMapping("/goToWelcome")
-
     public ModelAndView  goToWelcome(){
         ModelAndView userView = new ModelAndView();
         userView.setViewName("index");
@@ -45,43 +47,35 @@ public class UserController {
     }
 
 
-    @RequestMapping("/userRegister")
-
-    public ModelAndView userRegister (User user) {
+    @RequestMapping("/register")
+    public ModelAndView register (User user) {
         userService.addUser(user);
-
-        return showUserList();
+        return showList();
     }
 
-    @RequestMapping("/userLogin")
-    public ModelAndView userLogin(HttpServletRequest request) {
-        //      获取参数
+    @RequestMapping("/login")
+    public ModelAndView login(HttpServletRequest request) {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
 
-        //      创建map
-        Map<String,String> map = new HashMap<String, String>();
-        map.put("name",name);
-        map.put("password",password);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("name", name);
+        map.put("password", password);
 
         //      根据map查询
-        User user = userService.getUserByName(map);
+        User user = userService.getUserByMap(map);
         log.debug(user);
 
-        if (user == null){
+        if (user == null) {
             log.debug("没有该用户");
             return goToWelcome();
         }
 
-        return showUserList();
+        return showList();
     }
 
-
-
-
-
-    @RequestMapping("/userDetail")
-    public ModelAndView userDetail (@RequestParam(value = "id",defaultValue = "1")
+    @RequestMapping("/showDetail")
+    public ModelAndView showDetail (@RequestParam(value = "id",defaultValue = "1")
                                                 HttpServletRequest request) {
         String id = request.getParameter("id");
         User user =  userService.getUser(Integer.parseInt(id));
@@ -93,9 +87,8 @@ public class UserController {
     }
 
 
-    @RequestMapping("/userEdit")
-
-    public ModelAndView userEdit(int id){
+    @RequestMapping("/goToEdit")
+    public ModelAndView goToEdit(int id){
         User user =  userService.getUser(id);
 
         ModelAndView userView = new ModelAndView();
@@ -104,9 +97,8 @@ public class UserController {
         return userView;
     }
 
-    @RequestMapping("/updateUser")
-
-    public ModelAndView userUpdate(HttpServletRequest req){
+    @RequestMapping("/updateByRequest")
+    public ModelAndView updateByRequest(HttpServletRequest req){
 
         try {
             req.setCharacterEncoding("UTF-8");
@@ -126,27 +118,25 @@ public class UserController {
         user.setDetail(detail);
 
         userService.updateUser(user);
-        return showUserList();
+        return showList();
     }
 
-    @RequestMapping("/updateUser0")
-
-    public ModelAndView userUpdate0(User user){
+    @RequestMapping("/updateByPoJo")
+    public ModelAndView updateByPoJo(User user){
         log.debug(user);
 
         userService.updateUser(user);
-        return showUserList();
+        return showList();
     }
 
-    @RequestMapping("/userDelete")
-    public ModelAndView userDelete(int id) {
+    @RequestMapping("/delete")
+    public ModelAndView delete(int id) {
         userService.deleteUser(id);
-        return showUserList();
+        return showList();
     }
 
-    @RequestMapping("/userList")
-    public ModelAndView showUserList(){
-
+    @RequestMapping("/showList")
+    public ModelAndView showList(){
         List<User> list = userService.getAllUsers();
 
         ModelAndView modelAndView = new ModelAndView();
