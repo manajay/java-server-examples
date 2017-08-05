@@ -1,5 +1,6 @@
 package com.lj.spring.controller;
 
+import com.lj.spring.bean.Sex;
 import com.lj.spring.bean.User;
 import com.lj.spring.service.UserService;
 import org.apache.log4j.Logger;
@@ -49,6 +50,10 @@ public class UserController {
 
     @RequestMapping(value = "/register")
     public ModelAndView register (User user) {
+        if (user.getSex() == null){
+            user.setSex(Sex.MALE);
+        }
+
         userService.addUser(user);
         return showList();
     }

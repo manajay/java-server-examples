@@ -9,6 +9,9 @@
 		http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 
+    <bean id="typeHandler" class="com.lj.spring.typeHandler.SexTypeHandler"/>
+
+
     <bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${db.driver}"/>
         <property name="url" value="${db.url}"/>
@@ -24,6 +27,7 @@
           p:dataSource-ref="datasource"
           p:typeAliasesPackage="com.lj.spring.bean"
           p:mapperLocations="classpath:mapper/*.xml"
+          p:typeHandlers-ref="typeHandler"
     />
 
     <!--

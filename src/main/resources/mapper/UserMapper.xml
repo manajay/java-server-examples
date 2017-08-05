@@ -10,14 +10,15 @@
         <result column="age" property="age" jdbcType="INTEGER"></result>
         <result column="password" property="password" jdbcType="VARCHAR"></result>
         <result column="detail" property="detail" jdbcType="VARCHAR"></result>
+        <result column="sex" property="sex" jdbcType="INTEGER" typeHandler="com.lj.spring.typeHandler.SexTypeHandler"></result>
     </resultMap>
 
     <sql id="User_Colum_List">
-        id,name,age,password,detail
+        id,name,age,password,detail,sex
     </sql>
 
     <insert id="addUser" useGeneratedKeys="true" keyProperty="id" parameterType="User" >
-        INSERT INTO users (name,age,password,detail) VALUES (#{name},#{age},#{password},#{detail})
+        INSERT INTO users (name,age,password,detail,sex) VALUES (#{name},#{age},#{password},#{detail},#{sex,typeHandler=com.lj.spring.typeHandler.SexTypeHandler})
     </insert>
 
     <!--resultType="User"-->
@@ -45,7 +46,8 @@
             <if test="name != null">name=#{name},</if>
             <if test="age != null">age=#{age},</if>
             <if test="password != null">password=#{password},</if>
-            <if test="detail != null">detail=#{detail}</if>
+            <if test="detail != null">detail=#{detail},</if>
+            <if test="sex != null">sex=#{sex,typeHandler=com.lj.spring.typeHandler.SexTypeHandler}</if>
         </set>
         WHERE id=#{id}
     </update>

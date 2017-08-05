@@ -27,19 +27,26 @@ public class User {
      */
     private String detail;
 
+    private Sex sex;
+
     public User() {
     }
 
-    public User(int id, String name, int age, String password, String detail) {
-        this(name,age,password,detail);
-        this.id = id;
-    }
-
-    public User(String name, int age, String password, String detail) {
+    public User(String name, int age, String password, String detail, Sex sex) {
         this.name = name;
         this.age = age;
         this.password = password;
         this.detail = detail;
+        this.sex = sex;
+    }
+
+    public User(int id, String name, int age, String password, String detail, Sex sex) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.password = password;
+        this.detail = detail;
+        this.sex = sex;
     }
 
     public int getId() {
@@ -82,6 +89,14 @@ public class User {
         this.detail = detail;
     }
 
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -90,6 +105,7 @@ public class User {
                 ", age=" + age +
                 ", password='" + password + '\'' +
                 ", detail='" + detail + '\'' +
+                ", sex=" + sex +
                 '}';
     }
 }
