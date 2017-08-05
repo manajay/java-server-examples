@@ -37,7 +37,7 @@ public class TestUserProto {
         String baseUrl = "";
 
         OTIpcDef.OTIpcList.Builder builder = OTIpcDef.OTIpcList.newBuilder();
-        String jsonString = "";
+        String jsonString = "{}";
         try {
             JsonFormat.merge(jsonString,builder);
         } catch (JsonFormat.ParseException e) {

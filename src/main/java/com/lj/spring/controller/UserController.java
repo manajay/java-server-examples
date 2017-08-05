@@ -18,7 +18,7 @@ import java.util.Map;
 //请求–>DispatcherServlet–>HandlerMapping–>Controller组件（变化）–>ViewResolver–>JSP组件（变化）
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -47,7 +47,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/user")
+    @RequestMapping(value = "/register")
     public ModelAndView register (User user) {
         userService.addUser(user);
         return showList();
@@ -111,8 +111,7 @@ public class UserController {
         String detail = req.getParameter("detail");
         String age = req.getParameter("age");
 
-        User user = new User();
-        user.setId(Integer.parseInt(id));
+        User user = userService.getUser(Integer.parseInt(id));
         user.setAge(Integer.parseInt(age));
         user.setName(name);
         user.setDetail(detail);

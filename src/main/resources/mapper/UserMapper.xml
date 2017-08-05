@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lj.spring.mapper.UserMapper">
 
-    <!--<resultMap id="UserResultMap" type="com.lj.spring.bean.User">-->
-        <!--<id property="id" column="id" jdbcType="INTEGER"></id>-->
-        <!--<result column="name" property="name" jdbcType="VARCHAR"></result>-->
-        <!--<result column="age" property="age" jdbcType="INTEGER"></result>-->
-        <!--<result column="password" property="password" jdbcType="VARCHAR"></result>-->
-        <!--<result column="detail" property="detail" jdbcType="VARCHAR"></result>-->
-    <!--</resultMap>-->
+    <resultMap id="UserResultMap" type="com.lj.spring.bean.User">
+        <id property="id" column="id" jdbcType="INTEGER"></id>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="age" property="age" jdbcType="INTEGER"></result>
+        <result column="password" property="password" jdbcType="VARCHAR"></result>
+        <result column="detail" property="detail" jdbcType="VARCHAR"></result>
+    </resultMap>
 
     <sql id="User_Colum_List">
         id,name,age,password,detail
@@ -20,19 +20,20 @@
         INSERT INTO users (name,age,password,detail) VALUES (#{name},#{age},#{password},#{detail})
     </insert>
 
-    <select id="getUserById" parameterType="int" resultType="User">
+    <!--resultType="User"-->
+    <select id="getUserById" parameterType="int"  resultMap="UserResultMap">
         SELECT
         <include refid="User_Colum_List"/>
          FROM USERS WHERE id=#{id}
     </select>
 
-    <select id="getUserByMap"  parameterType="java.util.Map" resultType="User">
+    <select id="getUserByMap"  parameterType="java.util.Map" resultMap="UserResultMap">
         SELECT
         <include refid="User_Colum_List"/>
         FROM USERS WHERE name=#{name} AND password=#{password}
     </select>
 
-    <select id="getAllUsers" resultType="User">
+    <select id="getAllUsers" resultMap="UserResultMap">
         SELECT
         <include refid="User_Colum_List"/>
         FROM USERS
