@@ -82,9 +82,6 @@
         <property name="dataSource" ref="datasource"/>
     </bean>
 
-    <!--自定义ObjectFactory 但是没有使用-->
-    <bean id="objectFactory" class="com.lj.spring.util.LJObjectFactory"></bean>
-
     <!-- 5. 使用声明式事务 -->
     <tx:annotation-driven transaction-manager="manager" />
 

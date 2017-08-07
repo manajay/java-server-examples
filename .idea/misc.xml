@@ -9,6 +9,11 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/service/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectResources">
     <resource url="http://jakarta.apache.org/log4j/" location="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar!/org/apache/log4j/xml/log4j.dtd" />

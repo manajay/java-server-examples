@@ -15,16 +15,8 @@
     <!-- 注解扫描 @Component,@Repository,@Service,@Controller-->
     <context:component-scan base-package="com.lj.spring"/>
 
-
     <!-- 开启springMVC的注解驱动，使得url可以映射到对应的controller -->
     <mvc:annotation-driven></mvc:annotation-driven>
-
-    <!--<mvc:annotation-driven /> 这个默认就给容器注入了下面的2个bean，所以就不需要再次重复注入了-->
-    <!--下面第一个行使得自动映射到对应的controller类上，再下一行是映射到方法上，缺一不可。-->
-    <!--配置处理器映射器-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>-->
-    <!--配置处理器适配器-->
-    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
 
     <!--视图解释器-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
