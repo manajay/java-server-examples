@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <!-- 配置生成器 http://wiki.jikexueyuan.com/project/mybatis-in-action/code-generation-tool.html-->
+<!--http://blog.csdn.net/isea533/article/details/42102297-->
 <generatorConfiguration>
     <!-- 可以用于加载配置项或者配置文件，在整个配置文件中就可以使用${propertyKey}的方式来引用配置项
         resource：配置资源加载地址，使用resource，MBG从classpath开始找，比如com/myproject/generatorConfig.properties
@@ -128,7 +129,7 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
-        <javaClientGenerator targetPackage="${targetDaoPackage}" type="ANNOTATEDMAPPER" targetProject="${targetProject}">
+        <javaClientGenerator targetPackage="${targetDaoPackage}" type="XMLMAPPER" targetProject="${targetProject}">
             <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
             <property name="enableSubPackages" value="true"/>
 
