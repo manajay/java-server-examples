@@ -1,4 +1,4 @@
-package com.lj.spring;
+package com.lj.service;
 
 /**
  * Hello world!
