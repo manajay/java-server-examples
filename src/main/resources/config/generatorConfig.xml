@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-<!-- 配置生成器 -->
+<!-- 配置生成器 http://wiki.jikexueyuan.com/project/mybatis-in-action/code-generation-tool.html-->
 <generatorConfiguration>
     <!-- 可以用于加载配置项或者配置文件，在整个配置文件中就可以使用${propertyKey}的方式来引用配置项
         resource：配置资源加载地址，使用resource，MBG从classpath开始找，比如com/myproject/generatorConfig.properties
@@ -13,10 +13,13 @@
     <properties resource="" url="" />
      -->
 
-    <properties resource="config/jdbc.properties" />
+    <properties resource="config/generatorConfig.properties" />
 
     <!-- 在MBG工作的时候，需要额外加载的依赖包
         location属性指明加载jar/zip包的全路径
+        classPathEntry只在下面这两种情况下才有效：
+        当加载 JDBC 驱动内省数据库时
+        当加载根类中的 JavaModelGenerator 检查重写的方法时
    <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip" />
      -->
     <classPathEntry location="${classPathEntry}" />
@@ -53,7 +56,7 @@
         <!-- 必须要有的，使用这个配置链接数据库
             @TODO:是否可以扩展
          -->
-        <jdbcConnection driverClass="${db.driver}" connectionURL="${db.url}" userId="${db.username}" password="${db.password}">
+        <jdbcConnection driverClass="${driver}" connectionURL="${url}" userId="${username}" password="${password}">
             <!-- 这里面可以设置property属性，每一个property属性都设置到配置的Driver上 -->
         </jdbcConnection>
 
@@ -172,7 +175,7 @@
 
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
-        <table tableName="userinfo" >
+        <table schema="mybatis" tableName="orders" >
 
             <!-- 参考 javaModelGenerator 的 constructorBased属性-->
             <property name="constructorBased" value="false"/>
@@ -209,7 +212,7 @@
             <!-- 注意，该属性只针对MyBatis3Simple有用；
                 如果选择的runtime是MyBatis3Simple，那么会生成一个SelectAll方法，如果指定了selectAllOrderByClause，那么会在该SQL中添加指定的这个order条件；
              -->
-            <property name="selectAllOrderByClause" value="age desc,username asc"/>
+            <property name="selectAllOrderByClause" value="order_id desc,order_no asc"/>
 
             <!-- 如果设置为true，生成的model类会直接使用column本身的名字，而不会再使用驼峰命名方法，比如BORN_DATE，生成的属性名字就是BORN_DATE,而不会是bornDate -->
             <property name="useActualColumnNames" value="false"/>
@@ -249,9 +252,9 @@
                 column:要重新设置的列名；
                 注意，一个table元素中可以有多个columnOverride元素哈~
              -->
-            <columnOverride column="username">
+            <columnOverride column="order_id">
                 <!-- 使用property属性来指定列要生成的属性名称 -->
-                <property name="property" value="userName"/>
+                <property name="property" value="orderId"/>
 
                 <!-- javaType用于指定生成的domain的属性类型，使用类型的全限定名
                 <property name="javaType" value=""/>
