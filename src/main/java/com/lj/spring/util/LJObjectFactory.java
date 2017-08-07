@@ -36,4 +36,9 @@ public class LJObjectFactory extends DefaultObjectFactory {
         logger.info("使用定制对象工厂的create方法构建 列表对象");
         return super.create(type, constructorArgTypes, constructorArgs);
     }
+
+    @Override
+    public <T> boolean isCollection(Class<T> type) {
+        return super.isCollection(type);
+    }
 }

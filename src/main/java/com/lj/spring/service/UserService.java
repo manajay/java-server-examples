@@ -25,6 +25,8 @@ public interface UserService {
 
     /**
     * 根据map中的参数 查询用户
+    * 实际开发应该废弃 map传参的方式, 因为这样导致业务可读性极差,不易于扩展和维护,建议,参数少于5个的时候 使用@Param注解的形式,多余5个
+      则使用 JavaBean的方式传递参数, 将所有的参数封装成 POJO 的属性,参数传递为POJO类
     * @author        段连洁 [ manajay.dlj@gmail.com ]
     * @since         03/08/2017 11:34 AM
     * @param params  查询用户所需的map
