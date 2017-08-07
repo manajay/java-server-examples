@@ -6,6 +6,8 @@ import com.lj.spring.service.UserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -126,9 +128,18 @@ public class UserController {
     }
 
     @RequestMapping("/updateByPoJo")
-    public ModelAndView updateByPoJo(User user){
-        log.debug(user);
+    public ModelAndView updateByPoJo(HttpServletRequest req, User user){
 
+        try {
+            req.setCharacterEncoding("UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        String name = req.getParameter("name");
+        log.debug("打印姓名: " + name);
+
+        log.debug(user);
         userService.updateUser(user);
         return showList();
     }

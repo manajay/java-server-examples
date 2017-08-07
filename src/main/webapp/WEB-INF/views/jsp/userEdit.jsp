@@ -1,16 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8"  %>
-<%@page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"  %>
 <%request.setCharacterEncoding("UTF-8");%>
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>编辑用户详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
 
 <h1>使用req获取表单数据</h1>
-<form id="updateByRequestForm" action="${pageContext.request.contextPath}/user/updateByRequest" method="post" accept-charset="UTF-8">
+<form id="updateByRequestForm" action="${pageContext.request.contextPath}/user/updateByRequest" method="post" >
     <input type="hidden" name="id" value="${user.id}">
     <table border="1">
         <tr>
@@ -34,7 +33,7 @@
 </form>
 5
 <h1>使用User获取表单数据</h1>
-<form id="updateByPoJoForm" action="${pageContext.request.contextPath}/user/updateByPoJo" method="post" accept-charset="UTF-8">
+<form id="updateByPoJoForm" action="${pageContext.request.contextPath}/user/updateByPoJo" method="post" >
     <input type="hidden" name="id" value="${user.id}">
     <table border="1">
         <tr>
