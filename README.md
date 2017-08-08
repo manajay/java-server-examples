@@ -7,6 +7,11 @@ java-springmvc-demo
 * config
 * annotation
 
+#### Maven
+* config
+* pom.xml
+* lifecycle
+
 #### mybatis 
-* mybatis-generator [xml or annotation]
+* mybatis-generator [xml or annotation] : To see another branch mybatis-generator-apply
 
