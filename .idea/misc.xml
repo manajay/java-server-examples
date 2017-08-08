@@ -9,14 +9,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/service/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectResources">
-    <resource url="http://jakarta.apache.org/log4j/" location="$MAVEN_REPOSITORY$/log4j/log4j/1.2.17/log4j-1.2.17.jar!/org/apache/log4j/xml/log4j.dtd" />
+  <component name="ProjectDictionaryState">
+    <dictionary name="manajay" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
