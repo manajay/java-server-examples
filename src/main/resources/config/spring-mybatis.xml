@@ -29,13 +29,6 @@
         <property name="filters" value="stat" />
     </bean>
 
-    <!--<bean id="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="${jdbc_driver}"/>-->
-        <!--<property name="url" value="${jdbc_url}"/>-->
-        <!--<property name="username" value="${jdbc_username}"/>-->
-        <!--<property name="password" value="${jdbc_password}"/>-->
-    <!--</bean>-->
-
     <bean id="typeHandler" class="com.lj.spring.typeHandler.SexTypeHandler"/>
 
     <!--
