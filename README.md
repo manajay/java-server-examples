@@ -15,6 +15,16 @@ java-springmvc-demo
 #### mybatis 
 * mybatis-generator [xml or annotation] : To see another branch mybatis-generator-apply
 
+### spring-boot multi-datasource
+
+* spring-boot
+* mybatis
+* multi-datasource
+
+To see another branch -> spring-boot-multi-datasource
+
+
+
 #### xml
 
 * [Spring MVC注解故障追踪记](https://zhuanlan.zhihu.com/p/22839712)
