@@ -1,5 +1,4 @@
-# java-springmvc-demo
-java-springmvc-demo
+# java-server-examples
 
 ### 技术点
 
