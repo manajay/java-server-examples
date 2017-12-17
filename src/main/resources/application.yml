@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+
+mybatis:
+  config-location: classpath:database/mybatis-config.xml
+  mapper-locations: classpath:database/mapper/*/*.xml
+  type-aliases-package: com.manajay.cay.bo

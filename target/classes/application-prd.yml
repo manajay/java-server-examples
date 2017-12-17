@@ -1,0 +1,17 @@
+server:
+  port: 8081
+  context-path: /cay
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/database?characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+mywebsite: http://manajay.com
+
+
+rsa:
+  key: rsakey
+  value: rsa
