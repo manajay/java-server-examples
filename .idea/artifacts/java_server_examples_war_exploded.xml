@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="java-server-examples:war exploded">
-    <output-path>$PROJECT_DIR$/target/o2o</output-path>
-    <root id="root" />
+    <output-path>$PROJECT_DIR$/out/artifacts/java_server_examples_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="java-server-examples/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="java-server-examples" />
+        </element>
+      </element>
+    </root>
   </artifact>
 </component>

@@ -121,6 +121,23 @@ tomcat 配置
 
 ```
 
+初始化工程, web的配置 (`web.xml`与欢迎页`index.jsp`和`index.html`)
+![tomcat-web-init](/image/tomcat-web-01.jpg)
+
+> war模式：将WEB工程以包的形式上传到服务器, 也称为发布模式
+
+直接用tomcat部署 启动`/bin/startup.sh`,注意首次登录要在`/conf/tomcat-users.xml`中添加管理员权限的角色. 
+
+```
+<role rolename="tomcat"/>
+<user username="tomcat" password="tomcat" roles="tomcat,manager-gui"/>
+ ```
+
+tomcat部署下的文件架构: 
+![tomcat-webapp](/image/tomcat-web-02.png)
+
+> war exploded模式：将WEB工程以当前文件夹的位置关系上传到服务, 热部署的开发形式;
+
 
 ## 第二章 项目设计和框架搭建
 
