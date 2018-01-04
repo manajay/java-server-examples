@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="java-server-examples:war exploded">
+    <output-path>$PROJECT_DIR$/target/o2o</output-path>
+    <root id="root" />
+  </artifact>
+</component>
