@@ -53,73 +53,43 @@ mysql>
 
 ### tomcat
 
-![tomat](/image/tomcat-01.png)
+#### tomcat安装
+* 注意版本 `brew install tomcat` tomcat 7 对应 java的jdk7.0
+ 
+* 检查是否安装成功
+`catalina -h`
+> 能够正常运行的前提,正确的环境变量, 主要是 `JAVA_HOME` , `PATH` 和`CLASSPATH`
 
-tomcat 配置
+![tomat](/image/tomcat-01.png)
 
 > * tomcat home 路径:  ```/usr/local/Cellar/tomcat@7/7.0.77/libexec``` 
 > * tomcat base 路径   ```/usr/local/Cellar/tomcat@7/7.0.77/libexec```
 
+#### 修改tomcat配置
+
+* 配置文件的路径 
+
+`/usr/local/Cellar/tomcat@7/7.0.77/libexec/conf/server.xml`
+
+此路径 `/usr/local/Cellar/tomcat@7` 后面具体是多少,可以`brew`下载后,自己通过文件夹查找
+
+`catalina run`
+Tomcat的默认端口是8080，如果运行成功可通过`http://localhost:8080`访问
+
+* 更改端口
+
+`tomcat` 一般使用`HTTP`默认的`localhost` 端口 `8080`, 不过我之前的`8080`被占用了,所以设置的是`8083`
+
+> 首个Connector标签 更改运行端口
+```
+  <Connector port="8083" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+```
+
+#### tomcat 部署配置
+
 ![tomat-config](/image/tomcat-02.png)
-
-`tomcat`注意配置下面的文件, 一般使用`HTTP`默认的`localhost` 端口 `8080`, 不过我之前的`8080`被占用了,所以设置的是`8083`
-```
-<?xml version='1.0' encoding='utf-8'?>
-
-<Server port="8005" shutdown="SHUTDOWN">
-  <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
-  <Listener className="org.apache.catalina.security.SecurityListener" />
-  <Listener className="org.apache.catalina.core.AprLifecycleListener" SSLEngine="on" />
-  <Listener className="org.apache.catalina.core.JasperListener" />
-  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
-  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
-  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
-
-  <GlobalNamingResources>
-    <Resource name="UserDatabase" auth="Container"
-              type="org.apache.catalina.UserDatabase"
-              description="User database that can be updated and saved"
-              factory="org.apache.catalina.users.MemoryUserDatabaseFactory"
-              pathname="conf/tomcat-users.xml" />
-  </GlobalNamingResources>
-  
-  <Service name="Catalina">
-    <Connector port="8083" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-   
-    <Connector executor="tomcatThreadPool"
-               port="8080" protocol="HTTP/1.1"
-               connectionTimeout="20000"
-               redirectPort="8443" />
-    
-    <Connector port="8443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="false" sslProtocol="TLS" />
-
-    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
-
-    <Engine name="Catalina" defaultHost="localhost">
-
-   
-      <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster"/>
-      <Realm className="org.apache.catalina.realm.LockOutRealm">
-        <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
-               resourceName="UserDatabase"/>
-      </Realm>
-
-      <Host name="localhost"  appBase="webapps"
-            unpackWARs="true" autoDeploy="true">
-        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
-               prefix="localhost_access_log." suffix=".txt"
-               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
-
-      </Host>
-    </Engine>
-  </Service>
-</Server>
-
-```
 
 初始化工程, web的配置 (`web.xml`与欢迎页`index.jsp`和`index.html`)
 ![tomcat-web-init](/image/tomcat-web-01.jpg)
@@ -143,9 +113,22 @@ tomcat部署下的文件架构:
 
 ### 2.1 系统功能模块划分
 
+![系统设计-01](/image/system-design-01.png)
+
+* 前后端分离
+
 ### 2.2 实体类设计和表创建
 
+![实体关系图](/image/do-relation.png)
+
+* mysql数据库脚本见 **o2o.sql**
+
+
 ### 2.3 配置Maven
+
+* [idea官方地址](https://link.jianshu.com/?t=https://www.jetbrains.com/idea/download/) 下载`idea`
+
+* 
 
 ### 2.4 逐层完成SSM的各项配置
 
