@@ -22,15 +22,23 @@ online learning course above!
 
 ### mysql 
 
+* `brew install mysql` 安装 `mysql`
 
+
+执行 mysql
 ```
-// 执行 mysql
 mysql
+```
 会报下面的错
+```
 ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
-//解决办法: 
+```
+解决办法:
+```
 mysql.server start
-// 然后登录, 注意没有首次root登录,没有密码 
+```
+然后登录, 注意没有首次root登录,没有密码 
+```
 mysql -uroot -p
 ```
 登录后提示如下
@@ -56,10 +64,10 @@ mysql>
 ### tomcat
 
 #### tomcat安装
-* 注意版本 `brew install tomcat` tomcat 7 对应 java的jdk7.0
+* `brew install tomcat` 
+> 注意版本 tomcat 7 对应 java的jdk7.0
  
-* 检查是否安装成功
-`catalina -h`
+* 检查是否安装成功 `catalina -h`
 > 能够正常运行的前提,正确的环境变量, 主要是 `JAVA_HOME` , `PATH` 和`CLASSPATH`
 
 ![tomat](/image/tomcat-01.png)
