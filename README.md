@@ -12,7 +12,9 @@ online learning course above!
 * tomcat
 * chrome 
 
-> 使用 homebrew安装mysql与tomcat ,[参考文章](http://manajay.com/2017/01/homebrew-clean-install/)
+> * 使用 homebrew安装mysql与tomcat 
+> * [homebrew参考文章](http://manajay.com/2017/01/homebrew-clean-install/)
+> * [ruby参考文章](http://manajay.com/2017/01/mac-ruby-install/)
 
 `brew list` 查看安装状态 , 如下图
 ![brew-list](/image/brew-list.png)
