@@ -200,6 +200,12 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 
 ### 2.5 验证Dao
 
+* `PRIMARY KEY` 用于定义列为主键。 您可以使用多列来定义主键，列间以逗号分隔, 每个表都应该有一个主键，并且每个表只能有一个主键
+* `AUTO_INCREMENT` 定义列为自增的属性，一般用于主键，数值会自动加1
+* `UNIQUE KEY` 唯一索引, 一是约束作用（constraint），规范数据的唯一性，但同时也在这个key上建立了一个唯一索引
+* `ENGINE` 存储引擎
+* `CHARSET` 字符集编码
+
 ### 2.6 验证Service
 
 ### 2.7 验证Controller
