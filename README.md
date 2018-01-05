@@ -89,6 +89,7 @@ Tomcat的默认端口是8080，如果运行成功可通过`http://localhost:8080
 
 #### tomcat 部署配置
 
+![tomcat-config](/image/tomcat-config.gif)
 ![tomat-config](/image/tomcat-02.png)
 
 初始化工程, web的配置 (`web.xml`与欢迎页`index.jsp`和`index.html`)
@@ -104,6 +105,7 @@ Tomcat的默认端口是8080，如果运行成功可通过`http://localhost:8080
  ```
 
 tomcat部署下的文件架构: 
+
 ![tomcat-webapp](/image/tomcat-web-02.png)
 
 > war exploded模式：将WEB工程以当前文件夹的位置关系上传到服务, 热部署的开发形式;
@@ -127,8 +129,62 @@ tomcat部署下的文件架构:
 ### 2.3 配置Maven
 
 * [idea官方地址](https://link.jianshu.com/?t=https://www.jetbrains.com/idea/download/) 下载`idea`
+* `brew install maven` 安装 `maven`
 
-* 
+* 安装后 `mvn --version` 查看相关的配置 
+
+```
+Apache Maven 3.5.0 (ff8f5e7444045639af65f6095c62210b5713f426; 2017-04-04T03:39:06+08:00)
+Maven home: /usr/local/Cellar/maven/3.5.0/libexec
+Java version: 1.8.0_111, vendor: Oracle Corporation
+Java home: /Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "mac os x", version: "10.12.6", arch: "x86_64", family: "mac"
+```
+如果没有打印,说明 环境变量没有配置
+
+#### 配置 maven 环境变量
+
+注意 运行的前提是 环境变量
+
+`./etc/profile` 文件   全局共有配置，无论哪个用户登录，都会读取此文件
+`/etc/bashrc `   （一般在这个文件中添加系统级环境变量）全局（公有）配置，bash `shell`执行时，不管是何种方式，都会读取此文件。
+`~/.bash_profile`  （一般在这个文件中添加用户级环境变量）
+
+
+* `vi ~/.bash_profile`
+* 添加如下命令
+
+```
+export M2_HOME=/usr/local/Cellar/maven/3.5.0
+export PATH=$PATH:$M2_HOME/bin
+```
+```bash
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home
+export ANDROID_HOME=~/Library/Android/sdk
+export PATH=$JAVA_HOME/bin:$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:${JAVA_HOME}/bin:~/.rvm/rubies/ruby-2.4.0/bin/ruby
+export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+```
+
+* `JAVA_HOME` 注意`jdk`版本号
+* `PATH` 多个路径用 `:` 隔开
+* `CLASSPATH` 
+
+
+* 注意`M2_HOME`的路径要看你自己电脑上的路径
+
+![image.png](/image/m2-path.png)
+
+![image.png](/image/idea-setting.png)
+
+![image.png](/image/idea-maven-location.png)
+
+
+* `source ~/.bash_profile` 刷新相关配置
+
+
+*  当然也可以 使用 idea 自带的 maven, 默认自带 maven2 和 maven3 .
+路径就在 idea 的app里面. 
 
 ### 2.4 逐层完成SSM的各项配置
 
