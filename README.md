@@ -12,7 +12,9 @@
 * lifecycle
 
 #### mybatis 
-* mybatis-generator [xml or annotation] : To see another branch mybatis-generator-apply
+* mybatis-generator [xml or annotation] 
+
+See another branch [mybatis-generator-apply](https://github.com/manajay/java-server-examples/tree/mybatis-generator-apply)
 
 ### spring-boot multi-datasource
 
@@ -20,7 +22,7 @@
 * mybatis
 * multi-datasource
 
-To see another branch -> spring-boot-multi-datasource
+See another branch [spring-boot-multi-datasource](https://github.com/manajay/java-server-examples/tree/spring-boot-multi-datasource)
 
 
 
